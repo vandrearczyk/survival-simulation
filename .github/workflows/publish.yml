@@ -36,23 +36,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # --- DEBUG STEP ---
+      - name: Debug secret availability
+        run: |
+          echo "Username length: ${#USER_VAL}"
+          echo "Token length: ${#TOKEN_VAL}"
+        env:
+          USER_VAL: ${{ secrets.DOCKERHUB_USERNAME }}
+          TOKEN_VAL: ${{ secrets.DOCKERHUB_TOKEN }}
+      # ------------------
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Extract metadata for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/survival-simulation
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/survival-simulation:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/survival-simulation:${{ github.ref_name }}

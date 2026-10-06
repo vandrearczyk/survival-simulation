@@ -9,7 +9,8 @@ jobs:
     name: Build and publish Python distribution to PyPI
     runs-on: ubuntu-latest
     permissions:
-      id-token: write  # Needed for PyPI trusted publishing
+      contents: read
+      id-token: write  # Needed for PyPI OIDC trusted publishing
     steps:
       - uses: actions/checkout@v4
 
@@ -30,6 +31,8 @@ jobs:
   docker-publish:
     name: Build and push Docker image
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
 

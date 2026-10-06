@@ -1,3 +1,5 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/vandrearczyk/survival-simulation/blob/main/demo.ipynb)
+
 # survival-simulation
 
 [![PyPI version](https://img.shields.io/pypi/v/survival-simulation.svg)](https://pypi.org/project/survival-simulation/)
